@@ -1,11 +1,10 @@
-<!-- # words-per-min-GUI
+
 # GUI Words per Minute Calculator
 # Original Code By: David s. Kuhs
 # Prject Name: Python GUI WPM Calculator
-# v1.0 currently works in text based terminal only timer starts when you start the program
-# Road Map to v2.0: GUI interface where user will press start button, timer will start while generating words for the user to type
-# v2.0 features Return user score after they have finished the test and display on screen
- -->
+v1.0 currently works in text based terminal only timer starts when you start the program
+Road Map to v2.0: GUI interface where user will press start button, timer will start while generating words for the user to type
+v2.0 features Return user score after they have finished the test and display on screen
 Working v1.0 features:
 Main.py will call the word_check.py function's to start generating words from the english language txt file, 
 it will display a list of 10 words at a time for 10 rounds or 100 words total
