@@ -5,27 +5,37 @@ import word_checker
 
 BACKGROUND_COLOR = '#445E78'
 TEXT_LABEL_FONT = ('Arial', 20, 'bold')
+TEXT_LABEL_FONT_TWO = ('Arial', 48, 'bold')
 words = word_checker.WordChecker()
 all_word_list = words.get_data()
 
 class WpmGui():
     def __init__(self, master):
+        # creating frame
         frame = Frame(master)
         frame.config(bg=BACKGROUND_COLOR, )
         frame.pack(fill='both', expand=True)
+        # attributes we'll need for the object
         self.words_to_type = StringVar()
         self.total_chars_string = StringVar()
-        self.total_error_string = StringVar()
+        self.total_counts_string = StringVar()
         self.original_words_list = []
         self.user_word_list = []
         self.start_time = ''
         self.char_count = 0
         self.error_count = 0
-        self.start_button = Button(frame, text="Start Typing Test", height=25, width=50, font=('Arial', 40, 'bold'), command=self.start_typing_test)
-        self.typing_label = Label(frame, text='hello', fg='Black', bg=BACKGROUND_COLOR, textvariable=self.words_to_type, font=TEXT_LABEL_FONT)
-        self.total_char_label = Label(frame, text='Total Chars', fg='red', bg=BACKGROUND_COLOR, textvariable=self.total_chars_string)
-        self.total_error_label = Label(frame, text='Total Errors', fg='red', bg=BACKGROUND_COLOR, textvariable=self.total_error_string)
+
+        # GUI contrrols and labels
+        self.start_button = Button(frame, text="Start Typing Test", height=25, width=50,
+                                   font=('Arial', 40, 'bold'), command=self.start_typing_test)
+        self.typing_label = Label(frame, text='hello', fg='Black', bg=BACKGROUND_COLOR,
+                                  textvariable=self.words_to_type, font=TEXT_LABEL_FONT)
         self.user_entry = Entry(frame, width=80, fg='Black', bg='Gray', font=TEXT_LABEL_FONT)
+        self.user_entry.bind('<Return>', self.compare_entries)
+        self.total_count_label = Label(frame, text='Total Errors', fg='red', bg='White', height=1, font=TEXT_LABEL_FONT,
+                                       textvariable=self.total_counts_string)
+        self.total_char_label = Label(frame, text='Total Chars', fg='red', bg='White', height=2, font=TEXT_LABEL_FONT_TWO,
+                                      textvariable=self.total_chars_string)
         self.start_button.pack(padx=20, pady=20)
 
 
@@ -45,10 +55,10 @@ class WpmGui():
         self.user_entry.delete(0, 'end')
         self.error_count += words.count_errors(self.original_word_list, user_words)[0]
         self.char_count += words.count_errors(self.original_word_list, user_words)[1]
-        self.total_error_string.set(f'Errors: {self.error_count} /')
-        self.total_chars_string.set(f'{self.char_count} Total Characters')
-        self.total_error_label.grid(column=0, row=3)
-        self.total_char_label.grid(column=1, row=3)
+        self.total_counts_string.set('Errors / Total Characters')
+        self.total_chars_string.set(f'{self.error_count} / {self.char_count}')
+        self.total_count_label.pack()
+        self.total_char_label.pack()
         self.next_line()
 
 

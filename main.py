@@ -5,7 +5,6 @@ root = Tk()
 root.title('Python GUI WPM Calculator')
 root.geometry('1000x250')
 app = WpmGui(root)
-root.bind('<Return>', app.compare_entries)
 root.mainloop()
 
 

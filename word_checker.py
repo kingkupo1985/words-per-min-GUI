@@ -65,11 +65,12 @@ class WordChecker():
         for word in original_list:
             self.total_char_count += len(word)
         if len(original_list) == len(user_list):
-            print(f'You input {len(user_list)}')
+            pass
+            # print(f'You input {len(user_list)}')
         else:
             if user_list[0] == '' or user_list[0] == ' ':
                 user_list = []
-                print(f'Total missing words: {len(original_list)}')
+                # print(f'Total missing words: {len(original_list)}')
             missing_words = len(original_list) - len(user_list)
             # print(f'Total missing words: {missing_words}')
             for word in original_list[-missing_words:]:
@@ -106,5 +107,5 @@ class WordChecker():
                         except IndexError as err:
                             pass
                             # print(f'Missing Char @ o_word index: {i} / o_word char {o_word[i]} | u_word index: {i} / u_word char None')
-        print(f'Total Errors: {self.error_count} / Total Characters: {self.total_char_count}')
+        # print(f'Total Errors: {self.error_count} / Total Characters: {self.total_char_count}')
         return self.error_count, self.total_char_count
