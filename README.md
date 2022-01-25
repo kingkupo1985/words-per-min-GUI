@@ -2,6 +2,13 @@
 # GUI Words per Minute Calculator
 # Original Code By: David s. Kuhs
 # Prject Name: Python GUI WPM Calculator
+
+*** v2.0 GUI working using grid ***
+v2.0 is working but ugly with gui using tkinter ugly
+- Calculates WPM, error %, accuracy %
+
+
+
 v1.0 currently works in text based terminal only timer starts when you start the program
 Road Map to v2.0: GUI interface where user will press start button, timer will start while generating words for the user to type
 v2.0 features Return user score after they have finished the test and display on screen
