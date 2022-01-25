@@ -2,9 +2,11 @@ from tkinter import *
 from wpm_gui import WpmGui
 
 root = Tk()
+
 root.title('Python GUI WPM Calculator')
-root.geometry('1000x250')
+root.geometry('1250x350')
 app = WpmGui(root)
+
 root.mainloop()
 
 
