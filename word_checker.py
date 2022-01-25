@@ -32,7 +32,7 @@ class WordChecker():
     def words_to_type(self, words):
         self.word_count = 0
         self.words_type = []
-        while self.word_count != 10:
+        while self.word_count != 3:
             random_word = random.randint(0, len(words) - 1)
             self.words_type.append(words[random_word])
             self.word_count += 1
@@ -64,14 +64,19 @@ class WordChecker():
         # Iterate through original wordlist
         for word in original_list:
             self.total_char_count += len(word)
-        print(self.total_char_count)
-        if len(original_list) > len(user_list):
+        if len(original_list) == len(user_list):
+            print(f'You input {len(user_list)}')
+        else:
+            if user_list[0] == '' or user_list[0] == ' ':
+                user_list = []
+                print(f'Total missing words: {len(original_list)}')
             missing_words = len(original_list) - len(user_list)
-            print(f'Total missing words: {missing_words}')
+            # print(f'Total missing words: {missing_words}')
             for word in original_list[-missing_words:]:
-                print(f"missing word: {word} | word length: {len(word)}")
-                for char in word:
-                    self.error_count += 1
+                #print(f"missing word: {word} | word length: {len(word)}")
+                self.error_count += len(word)
+                # print(f'line 78 in loop errors currently {self.error_count}, word: {word}, word length{len(word)}')
+
         for o_word in original_list:
             # Iterate through users wordlist
             for u_word in user_list:
@@ -94,12 +99,12 @@ class WordChecker():
                         try:
                             if o_word[i] == u_word[i]:
                                 pass
-                                #print(f'Match @ o_word index: {i} / o_word char {o_word[i]} | u_word index: {i} / u_word char {u_word[i]}')
+                                # print(f'Match @ o_word index: {i} / o_word char {o_word[i]} | u_word index: {i} / u_word char {u_word[i]}')
                             else:
                                 self.error_count += 1
                                 # print(f'NO Match @ o_word index: {i} / o_word char {o_word[i]} | u_word index: {i} / u_word char {u_word[i]}')
                         except IndexError as err:
                             pass
-                                # print(f'Missing Char @ o_word index: {i} / o_word char {o_word[i]} | u_word index: {i} / u_word char None')
+                            # print(f'Missing Char @ o_word index: {i} / o_word char {o_word[i]} | u_word index: {i} / u_word char None')
         print(f'Total Errors: {self.error_count} / Total Characters: {self.total_char_count}')
         return self.error_count, self.total_char_count
